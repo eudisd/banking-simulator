@@ -1,7 +1,10 @@
+import 'gsap';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 
 import style from './style.less';
+import Header from '../Header';
 
 export default withRouter(class LandingPage extends React.Component {
   componentWillMount() {
@@ -11,10 +14,17 @@ export default withRouter(class LandingPage extends React.Component {
   componentWillUnmount() {
     style.unuse();
   }
+
+  componentDidMount() {
+
+    const headerNode = ReactDOM.findDOMNode(this);
+  }
+
   render() {
+
     return (
       <div className="landingPage">
-        <button className="ui button">Click to Begin</button>
+        <Header ref="header" />
       </div>
     );
   }

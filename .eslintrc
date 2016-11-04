@@ -3,7 +3,9 @@
 
   "globals": {
     "React": true,
-    "process": true
+    "process": true,
+    "TweenMax": true,
+    "TimelineMax": true
   },
 
   "env": {
@@ -174,7 +176,6 @@
     "generator-star-spacing": [2, "before"], 
 
     "max-depth": [2, 3], 
-    "max-len": [2, 100, 2], 
     "max-params": [2, 5], 
     "max-statements": 0, 
     "no-bitwise": 0, 
@@ -189,7 +190,7 @@
     "react/no-did-update-set-state": 2, 
     "react/no-multi-comp": 0, 
     "react/no-unknown-property": 2, 
-    "react/prop-types": 2,
+    "react/prop-types": 1,
     "react/react-in-jsx-scope": 2
   }
 }

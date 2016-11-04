@@ -1,14 +1,18 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import style from './style.less';
 
-export default class Header extends React.Component {
+export default withRouter(class Header extends React.Component {
   componentWillMount() {
     style.use();
   }
 
   componentWillUnmount() {
     style.unuse();
+  }
+
+  componentDidMount() {
   }
 
   render() {
@@ -20,4 +24,4 @@ export default class Header extends React.Component {
       </div>
     );
   }
-}
+});
