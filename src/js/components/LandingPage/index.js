@@ -1,6 +1,9 @@
 import 'gsap';
+
+import $ from 'jquery';
+import 'semantic/dist/semantic';
+
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
 
 import style from './style.less';
@@ -16,15 +19,17 @@ export default withRouter(class LandingPage extends React.Component {
   }
 
   componentDidMount() {
-
-    const headerNode = ReactDOM.findDOMNode(this);
+    $(this.refs.dropdown).dropdown('refresh');
   }
 
   render() {
-
     return (
-      <div className="landingPage">
-        <Header ref="header" />
+      <div className="ui fluid multiple search selection dropdown" ref="dropdown">
+          <input type="hidden" name="repo-ids" />
+          <div className="default text">Select Repos</div>
+          <i className="dropdown icon"></i>
+          <div className="menu">
+          </div>
       </div>
     );
   }

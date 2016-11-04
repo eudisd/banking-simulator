@@ -26,10 +26,8 @@ module.exports = {
   entry: {
     'application.bundle': entryList,
     vendor: [
-      'gsap',
       'babel-polyfill',
       'lodash',
-      'normalize.css',
       'react',
       'react-addons-create-fragment',
       'react-dom',
@@ -49,11 +47,11 @@ module.exports = {
 
   module: {
     preLoaders: [
-      {test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ }
+      {test: /\.js$/, loader: 'eslint-loader', exclude: [/node_modules/, /semantic/] }
     ],
 
     loaders: [
-      { test: /\.js$/, loaders: jsLoaders, exclude: /node_modules/ },
+      { test: /\.js$/, loaders: jsLoaders, exclude: /node_modules/  },
       { test: /\.less$/, loader: 'style/useable!css!less', exclude: /node_modules/ },
       { test: /\.json$/, loader: 'json'  },
       { test: /\.css$/, exclude: /\.useable\.css$/, loader: 'style!css'  },
@@ -74,12 +72,19 @@ module.exports = {
 
   resolve: {
     root: process.cwd() + '/src',
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
+    alias: {
+      '': process.cwd() + '/src'
+    }
   }
 };
 function getPlugins() {
  var plugins = [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.min.js'),
     new webpack.DefinePlugin({
@@ -94,6 +99,12 @@ function getPlugins() {
       dry: false
     })
   ].concat(getHtmlPluginTemplates());
+
+  if (process.env.NODE_ENV === 'hot') {
+    plugins.unshift(
+      new webpack.HotModuleReplacementPlugin()
+    );
+  }
 
   if (process.env.NODE_ENV === 'production') {
     plugins.unshift(
