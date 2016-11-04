@@ -6,24 +6,37 @@ var webpack = require('webpack'),
     getHtmlPluginTemplates = require(process.cwd() + '/src/helpers/getHtmlPluginTemplates.js');
 
 var jsLoaders = ['babel'];
+var devtool = 'cheap-source-map';
 
 var entryList = [
   'babel-polyfill',
   process.cwd() + '/src/js/main.js'
 ];
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'hot') {
   entryList.unshift('webpack-dev-server/client?http://0.0.0.0:' + config.PORT);
   entryList.unshift('webpack/hot/dev-server');
   jsLoaders.unshift('react-hot');
+  devtool = 'eval';
 }
 
 module.exports = {
-  devtool: 'eval',
+  devtool: devtool,
 
   entry: {
     'application.bundle': entryList,
-    vendor: []
+    vendor: [
+      'gsap',
+      'babel-polyfill',
+      'lodash',
+      'normalize.css',
+      'react',
+      'react-addons-create-fragment',
+      'react-dom',
+      'react-redux',
+      'react-router',
+      'redux'
+    ]
   },
 
   output: {
@@ -32,24 +45,13 @@ module.exports = {
     publicPath: getPublicPath()
   },
 
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.min.js'),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    }),
-
-    new CleanWebpackPlugin(['dest'], {
-      root: process.cwd(),
-      verbose: true,
-      dry: false
-    })
-  ].concat(getHtmlPluginTemplates()),
+  plugins: getPlugins(),
 
   module: {
+    preLoaders: [
+      {test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ }
+    ],
+
     loaders: [
       { test: /\.js$/, loaders: jsLoaders, exclude: /node_modules/ },
       { test: /\.less$/, loader: 'style/useable!css!less', exclude: /node_modules/ },
@@ -57,7 +59,6 @@ module.exports = {
       { test: /\.css$/, exclude: /\.useable\.css$/, loader: 'style!css'  },
       { test: /\.useable\.css$/, loader: 'style/useable!css'  },
       { test: /\.useable\.less$/, loader: 'style/useable!css!less'  },
-      // { test: /.(eot|svg|tff|woff|woff2)$/, loader: 'file?name=' + process.cwd() + '/src/fonts' },
       {
         test: /\.(eot|woff|woff2|ttf|svg)$/,
         loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'
@@ -76,7 +77,36 @@ module.exports = {
     extensions: ['', '.js']
   }
 };
+function getPlugins() {
+ var plugins = [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.min.js'),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
 
+    new CleanWebpackPlugin(['dest'], {
+      root: process.cwd(),
+      verbose: true,
+      dry: false
+    })
+  ].concat(getHtmlPluginTemplates());
+
+  if (process.env.NODE_ENV === 'production') {
+    plugins.unshift(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    );
+  }
+
+  return plugins;
+}
 function getPublicPath() {
   return '/';
 }

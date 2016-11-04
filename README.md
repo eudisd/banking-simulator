@@ -8,14 +8,9 @@ Assumptions Made:
   - No backend
 
 
-## Install Yarn
-```javascript
-$ npm install yarn
-```
-
 ## Install All Packages
 ```javascript
-$ ./node_modules/.bin/yarn install
+npm install
 ```
 
 ## Local Development Flow

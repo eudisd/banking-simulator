@@ -2,7 +2,6 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var config = require(process.cwd() + '/src/config');
-var ENV = process.env.NODE_ENV || 'development';
 
 process.title = 'KBS';
 

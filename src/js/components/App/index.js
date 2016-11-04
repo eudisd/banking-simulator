@@ -8,6 +8,13 @@ import baseStyle from '../../../less/base.less';
 import style from './style.less';
 
 export default withRouter(class App extends React.Component {
+  static propTypes = {
+    children: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    children: {}
+  };
 
   componentWillMount() {
     style.use();
@@ -28,4 +35,4 @@ export default withRouter(class App extends React.Component {
       </div>
     );
   }
-})
+});
