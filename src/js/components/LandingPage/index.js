@@ -14,7 +14,7 @@ export default withRouter(class LandingPage extends React.Component {
   render() {
     return (
       <div className="landingPage">
-        Click to Begin
+        <button className="ui button">Click to Begin</button>
       </div>
     );
   }
