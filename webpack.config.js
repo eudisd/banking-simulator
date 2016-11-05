@@ -27,6 +27,7 @@ module.exports = {
     'application.bundle': entryList,
     vendor: [
       'babel-polyfill',
+      'jquery',
       'lodash',
       'react',
       'react-addons-create-fragment',
@@ -47,16 +48,16 @@ module.exports = {
 
   module: {
     preLoaders: [
-      {test: /\.js$/, loader: 'eslint-loader', exclude: [/node_modules/, /semantic/] }
+      { test: /\.js$/, loader: 'eslint-loader', exclude: [/node_modules/, /semantic/] }
     ],
 
     loaders: [
       { test: /\.js$/, loaders: jsLoaders, exclude: /node_modules/  },
       { test: /\.less$/, loader: 'style/useable!css!less', exclude: /node_modules/ },
-      { test: /\.json$/, loader: 'json'  },
-      { test: /\.css$/, exclude: /\.useable\.css$/, loader: 'style!css'  },
-      { test: /\.useable\.css$/, loader: 'style/useable!css'  },
-      { test: /\.useable\.less$/, loader: 'style/useable!css!less'  },
+      { test: /\.json$/, loader: 'json' },
+      { test: /\.css$/, exclude: /\.useable\.css$/, loader: 'style!css' },
+      { test: /\.useable\.css$/, loader: 'style/useable!css' },
+      { test: /\.useable\.less$/, loader: 'style/useable!css!less' },
       {
         test: /\.(eot|woff|woff2|ttf|svg)$/,
         loader: 'url-loader?limit=30000&name=[name]-[hash].[ext]'

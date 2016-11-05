@@ -17,8 +17,8 @@ export default withRouter(class App extends React.Component {
   };
 
   componentWillMount() {
-    style.use();
     baseStyle.use();
+    style.use();
   }
 
   componentWillUnmount() {
@@ -28,9 +28,13 @@ export default withRouter(class App extends React.Component {
 
   render() {
     return (
-      <div className="app">
-        {this.props.children}
-        <Footer />
+      <div className="app row ui grid">
+        <div className="column">
+          {this.props.children}
+        </div>
+        <div className="column">
+          <Footer />
+        </div>
       </div>
     );
   }
