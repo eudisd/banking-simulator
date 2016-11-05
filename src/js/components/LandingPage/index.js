@@ -1,11 +1,9 @@
 import $ from 'jquery';
-
 import React from 'react';
 import { withRouter } from 'react-router';
 
 import style from './style.less';
 import Header from '../Header';
-
 import fdicSrc from 'images/fdic.resized.png';
 import verisignSrc from 'images/verisign.resized.jpg';
 import trusteeSrc from 'images/trustee.resized.jpg';
@@ -45,7 +43,7 @@ export default withRouter(class LandingPage extends React.Component {
     return (
       <div className="landingPage">
         <div className="landingPage__header inverted ui large top fixed hidden menu row">
-            <div className="landingPage__title kbs-white container left floated ">
+            <div className="landingPage__title container left floated ">
               <h1>Kustomer Banking Systems</h1>
             </div>
             <div className="landingPage__loginButton right floated column">

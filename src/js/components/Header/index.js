@@ -19,7 +19,7 @@ export default withRouter(class Header extends React.Component {
     return (
       <div className="header">
         <div className="header__copy">
-          <h1 className="trustful-blue"> Kustomer Banking Systems </h1>
+          <h1> Kustomer Banking Systems </h1>
         </div>
       </div>
     );
