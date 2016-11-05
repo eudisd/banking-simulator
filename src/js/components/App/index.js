@@ -29,10 +29,10 @@ export default withRouter(class App extends React.Component {
   render() {
     return (
       <div className="app row ui grid">
-        <div className="column">
+        <div className="sixteen wide column">
           {this.props.children}
         </div>
-        <div className="column">
+        <div className="sixteen wide column">
           <Footer />
         </div>
       </div>

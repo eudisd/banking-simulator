@@ -3,6 +3,7 @@
 Welcome to KBS, our banking simulator!
 
 Assumptions Made:
+  - A Unix based OS.
   - Only USD is considered
   - No User Account
   - No backend

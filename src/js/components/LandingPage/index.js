@@ -1,5 +1,3 @@
-import 'gsap';
-
 import $ from 'jquery';
 
 import React from 'react';
@@ -23,12 +21,13 @@ export default withRouter(class LandingPage extends React.Component {
 
   render() {
     return (
-      <div className="landingPage row">
-        <div className="two wide column">
-        </div>
-
-        <div className="two wide column">
-        </div>
+      <div className="landingPage ui large top fixed hidden menu row">
+          <div className="landingPage__title trustfulBlue container left floated column">
+            <h1>Kustomer Banking Systems</h1>
+          </div>
+          <div className="landingPage__loginButton right floated column">
+            <button className="ui button">Login As Guest</button>
+          </div>
       </div>
     );
   }
