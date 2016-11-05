@@ -1,13 +1,31 @@
 .landingPage {
-  border: 1px solid red;
+  background: #d2ddf4; /* Old browsers */
+  background: -moz-linear-gradient(top,  #d2ddf4 0%, #ffffff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #d2ddf4 0%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #d2ddf4 0%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ddf4', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+  padding-top: 5%;
 
   &__title {
     padding-left: 1%;
     padding-top: 0.2%;
   }
 
+  &__content {
+    padding-top: 5% !important;
+  }
+
   &__loginButton {
     padding-right: 1%;
     padding-top: 0.3%;
+  }
+
+  &__social {
+  }
+
+  &__security {
+  }
+
+  &__fdic {
   }
 }

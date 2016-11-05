@@ -8,10 +8,10 @@
     "stop": "pkill --signal SIGINT KBS",
     "webpack:hot": "NODE_ENV=hot node webpack-dev-server.js",
     "webpack:build:production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --config webpack.config.js --progress",
-    "test": "npm run test:unit && && npm run test:integration && npm run test:acceptance",
+    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "test:unit": "mocha --recursive --compilers css:./test/css-null-compiler.js test/mocha-setup.js test/unit",
     "test:integration": "mocha --recursive --compilers css:./test/css-null-compiler.js test/mocha-setup.js test/integration",
-    "test:acceptance": "./node_modules/.bin/wdio test/wdio.conf.js",
+    "test:e2e": "./node_modules/.bin/wdio test/wdio.conf.js",
     "test:unit:watch": "mocha --recursive --compilers css:./test/css-null-compiler.js test/mocha-setup.js test/unit -w",
     "prepublish": "./node_modules/.bin/selenium-standalone install"
   },

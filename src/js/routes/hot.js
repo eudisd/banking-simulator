@@ -14,6 +14,7 @@ import Dashboard from '../components/Dashboard';
 const routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
+      <IndexRoute component={LandingPage} />
       <Route path="dashboard" component={Dashboard} />
       <Route path="*" component={RouteNotFound} />
     </Route>

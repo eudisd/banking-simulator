@@ -22,7 +22,9 @@ process.on('SIGTERM', shutDown);
 process.on('SIGQUIT', shutDown);
 process.on('SIGUSR2', shutDown);
 
-function shutDown() {
+function shutDown(stackTrace) {
+  console.log('stackTrace: ', stackTrace);
   server.close();
+  process.exit(1);
 }
 

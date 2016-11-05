@@ -16,16 +16,16 @@ npm install
 
 ## Local Development Flow
 
-## Local Build
+## Production Build (Only For Testing)
 
 ## Testing
 
 ### Run All Tests
 ```bash
-$ npm run webpack:build:development
+$ npm run webpack:build:production
 $ npm start &
 $ npm test
-$ npm stop
+$ sudo pkill -f node
 ```
 
 ### Run Only Unit Tests
@@ -39,8 +39,8 @@ $ npm run test:integration
 
 ### Run Only Acceptance/E2E Tests
 ```bash
-$ npm run webpack:build:development
+$ npm run webpack:build:production
 $ npm start &
-$ npm test
-$ npm stop
+$ npm run test:e2e
+$ sudo pkill -f node
 ```
