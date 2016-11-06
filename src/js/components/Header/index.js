@@ -1,9 +1,9 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { Link } from 'react-router';
 
 import style from './style.less';
 
-export default withRouter(class Header extends React.Component {
+export default class Header extends React.Component {
   componentWillMount() {
     style.use();
   }
@@ -19,9 +19,9 @@ export default withRouter(class Header extends React.Component {
     return (
       <div className="header">
         <div className="header__copy">
-          <h1> Kustomer Banking Systems </h1>
+          <Link to="/"><h1> Kustomer Banking Systems </h1></Link>
         </div>
       </div>
     );
   }
-});
+}

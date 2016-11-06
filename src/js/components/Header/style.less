@@ -1,5 +1,10 @@
+@import '../../../less/globals.less';
+
 .header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  &__copy {
+    a {
+      text-decoration: none;
+      &:extend(.kbs-white);
+    }
+  }
 }

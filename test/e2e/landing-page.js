@@ -6,7 +6,7 @@ describe('Landing Page E2E Tests', function() {
     expect(browser.getTitle()).to.equal('KBS');
   });
 
-  it('redirects to the dashboard correctly when Login As Guest button is clicked', function() {
+  it('redirects to the dashboard correctly when Try Demo button is clicked', function() {
     browser.url('/');
     browser.click('.landingPage__loginButton button');
     expect(browser.waitForExist('.dashboard', 1000)).to.be.true;

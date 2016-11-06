@@ -7,10 +7,6 @@ export default class Footer extends React.Component {
     style.use();
   }
 
-  componentWillUnount() {
-    style.unuse();
-  }
-
   render() {
     return (
       <div>
@@ -44,7 +40,7 @@ export default class Footer extends React.Component {
             </div>
           </div>
         </div>
-        <div className="ui container grid centered">
+        <div className="footer__copyright ui container grid centered">
           <div className="four wide column">
             Copyright &copy; 2016 KBS LLC
           </div>

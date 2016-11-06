@@ -6,18 +6,15 @@ import {
   hashHistory
 } from 'react-router';
 
-import App from '../components/App';
 import RouteNotFound from '../components/RouteNotFound';
-import LandingPage from '../components/LandingPage';
-import Dashboard from '../components/Dashboard';
+import { LandingPageTransition } from '../components/LandingPage';
+import { DashboardTransition } from '../components/Dashboard';
 
 const routes = (
   <Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={LandingPage} />
-      <Route path="dashboard" component={Dashboard} />
-      <Route path="*" component={RouteNotFound} />
-    </Route>
+    <Route path="/" component={LandingPageTransition} />
+    <Route path="/dashboard" component={DashboardTransition} />
+    <Route path="*" component={RouteNotFound} />
   </Router>
 );
 
