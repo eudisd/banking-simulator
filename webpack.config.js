@@ -100,7 +100,12 @@ function getPlugins() {
       verbose: true,
       dry: false
     })
-  ].concat(getHtmlPluginTemplates());
+  ].concat(
+    getHtmlPluginTemplates(
+      process.cwd() + '/src/templates',
+      process.cwd() + '/dest'
+    )
+  );
 
   if (process.env.NODE_ENV === 'hot') {
     plugins.unshift(

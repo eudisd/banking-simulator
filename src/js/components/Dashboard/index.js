@@ -6,27 +6,31 @@ import ReactTransitionGroup from 'react-addons-transition-group';
 import style from './style.less';
 import Header from '../Header';
 import Footer from '../Footer';
+import AccountBalanceList from '../AccountBalanceList';
+import AccountDropdownListContainer from '../../containers/AccountDropdownListContainer';
 
 class Dashboard extends React.Component {
+  static propTypes = {
+    router: React.PropTypes.object
+  };
+
+  static defaultPros = {
+    router: { push() {} }
+  };
+
   componentWillAppear(callback) {
     $(this.refs.dashboard)
       .transition({
-        animation  : 'fade in',
-        duration   : '300ms',
-        onComplete : function() {
+        animation: 'fade in',
+        duration: '300ms',
+        onComplete() {
           callback();
         }
       });
   }
 
-  componentDidAppear() {
-  }
-
   componentWillEnter(callback) {
     callback();
-  }
-
-  componentDidEnter() {
   }
 
   render() {
@@ -44,7 +48,15 @@ class Dashboard extends React.Component {
                 </div>
             </div>
             <div className="dashboard__content ui row">
-              <div className="ui column container">HI</div>
+              <div className="ui column container ui grid">
+                <div className="accountLedger__header right floated nine wide column">
+                  <AccountDropdownListContainer />
+                  <div className="ui attached segment">
+                    ledger
+                  </div>
+                </div>
+                <AccountBalanceList />
+              </div>
             </div>
           </div>
         </div>
@@ -57,6 +69,14 @@ class Dashboard extends React.Component {
 }
 
 class DashboardTransition extends React.Component {
+  static propTypes = {
+    router: React.PropTypes.object
+  };
+
+  static defaultPros = {
+    router: { push() {} }
+  };
+
   componentWillMount() {
     style.use();
   }

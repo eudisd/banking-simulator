@@ -11,6 +11,14 @@ import verisignSrc from 'images/verisign.resized.jpg';
 import trusteeSrc from 'images/trustee.resized.jpg';
 
 class LandingPageTransition extends React.Component {
+  static propTypes = {
+    router: React.PropTypes.object
+  };
+
+  static defaultPros = {
+    router: { push() {} }
+  };
+
   render() {
     return (
       <ReactTransitionGroup>
@@ -27,7 +35,7 @@ class LandingPage extends React.Component {
 
   static defaultPros = {
     router: { push() {} }
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -49,7 +57,7 @@ class LandingPage extends React.Component {
         .transition({
           animation: 'fade in',
           duration: '500ms',
-          onComplete () {
+          onComplete() {
             callback();
           }
         });
