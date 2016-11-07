@@ -3,11 +3,10 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import ReactTransitionGroup from 'react-addons-transition-group';
 
+import AccountsContainer from '../../containers/AccountsContainer';
 import style from './style.less';
 import Header from '../Header';
 import Footer from '../Footer';
-import AccountBalanceList from '../AccountBalanceList';
-import AccountDropdownListContainer from '../../containers/AccountDropdownListContainer';
 
 class Dashboard extends React.Component {
   static propTypes = {
@@ -48,15 +47,7 @@ class Dashboard extends React.Component {
                 </div>
             </div>
             <div className="dashboard__content ui row">
-              <div className="ui column container ui grid">
-                <div className="accountLedger__header right floated nine wide column">
-                  <AccountDropdownListContainer />
-                  <div className="ui attached segment">
-                    ledger
-                  </div>
-                </div>
-                <AccountBalanceList />
-              </div>
+              <AccountsContainer />
             </div>
           </div>
         </div>

@@ -23,12 +23,13 @@ export default new falcor.Model({
           id: aggregateInternalAccountId,
           name: 'KBS',
           idName: 'All Transactions',
-          type: 'all'
+          type: 'all',
+          transactions: { $type: 'ref', value: ['accounts', 'internal', 0, 'transactions'] }
         },
         {
           id: secondInternalAccountId,
           name: 'KBS',
-          idName: `KBS-${truncate(secondInternalAccountId, { length: TRUNCATE_MAX })}`,
+          idName: `KBS-savings-${truncate(secondInternalAccountId, { length: TRUNCATE_MAX })}`,
           type: 'savings',
           balance: 5000,
           transactions: [
@@ -51,7 +52,7 @@ export default new falcor.Model({
         {
           id: thirdInternalAccountId,
           name: 'KBS',
-          idName: `KBS-${truncate(thirdInternalAccountId, { length: TRUNCATE_MAX })}`,
+          idName: `KBS-checking-${truncate(thirdInternalAccountId, { length: TRUNCATE_MAX })}`,
           type: 'checking',
           balance: 1000
         }

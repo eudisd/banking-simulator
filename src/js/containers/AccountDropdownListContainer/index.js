@@ -1,24 +1,17 @@
 import React from 'react';
 import isEmpty from 'lodash/isEmpty';
 import { connect } from 'react-redux';
-import accountActionCreators from '../../actions/accountActionCreators';
 
 import AccountDropdownList from '../../components/AccountDropdownList';
 
 class AccountDropdownListContainer extends React.Component {
   static propTypes = {
-    accounts: React.PropTypes.array,
-    onGetInternalAccounts: React.PropTeyps.func
+    accounts: React.PropTypes.array
   };
 
   static defaultProps = {
-    accounts: [],
-    onGetInternalAccounts() {}
+    accounts: []
   };
-
-  componentWillMount() {
-    this.props.onGetInternalAccounts();
-  }
 
   render() {
     return (
@@ -33,13 +26,5 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  const { getInternalAccounts } = accountActionCreators;
-
-  return {
-    onGetInternalAccounts: () => dispatch(getInternalAccounts())
-  };
-}
-
 export { AccountDropdownListContainer };
-export default connect(mapStateToProps, mapDispatchToProps)(AccountDropdownListContainer);
+export default connect(mapStateToProps, null)(AccountDropdownListContainer);

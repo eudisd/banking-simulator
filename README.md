@@ -5,6 +5,7 @@ deposit money.  We also see a running ledger of all transactions.
 
 Before we get started, here are the assumptions I made:
   - A Unix based OS.
+  - Latest Chrome Browser
   - Only USD is considered
 
 ## Simple Architecture
