@@ -5,7 +5,6 @@ import faker from 'faker';
 const aggregateInternalAccountId = 'all';
 const secondInternalAccountId = '789012';
 const thirdInternalAccountId = '111213';
-const TRUNCATE_MAX = 5;
 
 export default new falcor.Model({
   cache: {
@@ -24,24 +23,91 @@ export default new falcor.Model({
           name: 'KBS',
           idName: 'All Transactions',
           type: 'all',
-          transactions: { $type: 'ref', value: ['accounts', 'internal', 0, 'transactions'] }
+          transactions: [
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Merged 1',
+              amount: -100,
+              type: 'debit',
+              balance: 4900
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Merged 2',
+              amount: +200,
+              type: 'deposit',
+              balance: 5100
+            }
+          ]
         },
         {
           id: secondInternalAccountId,
           name: 'KBS',
-          idName: `KBS-savings-${truncate(secondInternalAccountId, { length: TRUNCATE_MAX })}`,
+          idName: `KBS-savings-...${secondInternalAccountId.split('').slice(-4).join('')}`,
           type: 'savings',
           balance: 5000,
           transactions: [
             {
-              date: faker.date.past(),
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
               balance: 4900
             },
             {
-              date: faker.date.past(),
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 1',
+              amount: +200,
+              type: 'deposit',
+              balance: 5100
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 1',
+              amount: -100,
+              type: 'debit',
+              balance: 4900
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 1',
+              amount: +200,
+              type: 'deposit',
+              balance: 5100
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 1',
+              amount: -100,
+              type: 'debit',
+              balance: 4900
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 1',
+              amount: +200,
+              type: 'deposit',
+              balance: 5100
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 1',
+              amount: -100,
+              type: 'debit',
+              balance: 4900
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
               description: 'Testing 1',
               amount: +200,
               type: 'deposit',
@@ -52,9 +118,27 @@ export default new falcor.Model({
         {
           id: thirdInternalAccountId,
           name: 'KBS',
-          idName: `KBS-checking-${truncate(thirdInternalAccountId, { length: TRUNCATE_MAX })}`,
+          idName: `KBS-checking-...${thirdInternalAccountId.split('').slice(-4).join('')}`,
           type: 'checking',
-          balance: 1000
+          balance: 1000,
+          transactions: [
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 3',
+              amount: -200,
+              type: 'debit',
+              balance: 4800
+            },
+            {
+              id: faker.random.uuid(),
+              date: (new Date()).toJSON(),
+              description: 'Testing 4',
+              amount: +300,
+              type: 'deposit',
+              balance: 5200
+            }
+          ]
         }
       ]
     }

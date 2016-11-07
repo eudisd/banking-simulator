@@ -11,13 +11,7 @@ class AccountBalanceListContainer extends React.Component {
     checkingAccount: React.PropTypes.object
   };
 
-  static defaultProps = {
-    savingsAccount: {},
-    checkingAccount: {}
-  };
-
   render() {
-    console.log('this: ', this.props.savingsAccount);
     return (
       <AccountBalanceList savingsAccount={this.props.savingsAccount}
                           checkingAccount={this.props.checkingAccount} />
@@ -26,10 +20,17 @@ class AccountBalanceListContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  const internal = state.accounts && state.accounts.internal && state.accounts.internal;
+
+  let savingsAccount = internal && internal[1];
+  let checkingAccount = internal && internal[2];
+
+  savingsAccount = isEmpty(savingsAccount) ? undefined: savingsAccount;
+  checkingAccount = isEmpty(checkingAccount) ? undefined: checkingAccount;
+
   return {
-    savingsAccount: state.accounts && state.accounts.internal && state.accounts.internal[1],
-    checkingAccount: state.accounts && state.accounts.internal && state.accounts.internal[2]
+    savingsAccount,
+    checkingAccount
   };
 }
 

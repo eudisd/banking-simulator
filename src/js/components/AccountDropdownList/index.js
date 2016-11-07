@@ -2,24 +2,30 @@ import $ from 'jquery';
 import truncate from 'lodash/truncate';
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-import ReactTransitionGroup from 'react-addons-transition-group';
 
 import style from './style.less';
-import Header from '../Header';
-import Footer from '../Footer';
 import AccountBalanceList from '../AccountBalanceList';
 
 class AccountDropdownList extends React.Component {
   static propTypes = {
-    accounts: React.PropTypes.array
+    accounts: React.PropTypes.array,
+    onSetSelectedInternalAccount: React.PropTypes.func
   };
 
   static defaultProps = {
-    accounts: []
+    accounts: [],
+    onSetSelectedInternalAccount() {}
+  }
+
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
-    $(this.refs.dropdown).dropdown();
+    $(this.refs.dropdown).dropdown({
+      onChange: this.onChange
+    });
   }
 
   componentDidUpdate() {
@@ -27,8 +33,14 @@ class AccountDropdownList extends React.Component {
     // Seems like there is a bug when updating dynamically generated dropdown,
     // we must wrap it in a setTimeout to actually get the desired affect.
     setTimeout(() => {
-      $(this.refs.dropdown).dropdown('set selected', 'all');
+     // $(this.refs.dropdown).dropdown('set selected', 'all');
+      $(this.refs.dropdown).dropdown('set selected', '111213');
+      this.props.onSetSelectedInternalAccount('111213');
     });
+  }
+
+  onChange(id) {
+    this.props.onSetSelectedInternalAccount(id);
   }
 
   render() {
