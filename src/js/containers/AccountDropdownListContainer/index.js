@@ -17,7 +17,9 @@ class AccountDropdownListContainer extends React.Component {
 
   render() {
     return (
-      <AccountDropdownList accounts={this.props.accounts} onSetSelectedInternalAccount={this.props.onSetSelectedInternalAccount} />
+      <AccountDropdownList
+        accounts={this.props.accounts}
+        onSetSelectedInternalAccount={this.props.onSetSelectedInternalAccount} />
     );
   }
 }

@@ -25,6 +25,12 @@ export default (state={}, action) => {
       internal: action.response
     };
 
+  case accountTypes.GET_EXTERNAL_ACCOUNTS_SUCCESS:
+    return {
+      ...state,
+      external: action.response
+    };
+
   default:
     return state;
   }

@@ -3,6 +3,7 @@ import range from 'lodash/range';
 import truncate from 'lodash/truncate';
 import faker from 'faker';
 
+const externalAccountId = '5555';
 const aggregateInternalAccountId = 'all';
 const secondInternalAccountId = '789012';
 const thirdInternalAccountId = '111213';
@@ -14,9 +15,10 @@ export default new falcor.Model({
     accounts: {
       external: [
         {
-          id: faker.random.uuid(),
+          id: externalAccountId,
           name: 'JP Morgan Chase',
           type: 'savings',
+          idName: `(External)-Chase-${externalAccountId.split('').slice(-4).join('')}`,
           balance: 200000
         }
       ],

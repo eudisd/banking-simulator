@@ -45,17 +45,15 @@ class AccountDropdownList extends React.Component {
 
   render() {
     return (
-      <div className="ui top attached header">
-        <select className="ui dropdown" ref="dropdown">
-          {this.props.accounts.map((account) => {
-            return (
-              <option value={account.id} key={account.id}>
-                {account.idName}
-              </option>
-            );
-          })}
-        </select>
-      </div>
+      <select className="ui dropdown" ref="dropdown">
+        {this.props.accounts.map((account) => {
+          return (
+            <option value={account.id} key={account.id}>
+              {account.idName}
+            </option>
+          );
+        })}
+      </select>
     );
   }
 }

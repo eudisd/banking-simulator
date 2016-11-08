@@ -39,7 +39,9 @@ export default {
 
   getAccountTransactions(id='', offset=0, limit=10) {
     return new Promise((resolve, reject) => {
-      return model.get(`accounts.internal[0..2]["id", "transactions"][${offset}..${limit}]["id", "amount", "date", "description", "type", "balance"]`).then((response) => {
+      return model
+      .get(`accounts.internal[0..2]["id", "transactions"][${offset}..${limit}]["id", "amount", "date", "description", "type", "balance"]`)
+      .then((response) => {
         let transactions;
 
         try {
@@ -58,7 +60,9 @@ export default {
 
   getInternalAccountsField(field) {
     return new Promise((resolve, reject) => {
-      return model.get(`accounts.internal[0..1]["${field}"]`).then((response) => {
+      return model
+      .get(`accounts.internal[0..1]["${field}"]`)
+      .then((response) => {
         if (response) {
           resolve(map(response.json.accounts.internal, (o) => o));
         } else {
@@ -70,7 +74,9 @@ export default {
 
   getExternalAccounts() {
     return new Promise((resolve, reject) => {
-      return model.get('accounts.external[0]["id", "name", "type", "balance"]').then((response) => {
+      return model
+      .get('accounts.external[0]["id", "name", "idName", "type", "balance"]')
+      .then((response) => {
         resolve(map(response.json.accounts.external, (o) => o));
       });
     });

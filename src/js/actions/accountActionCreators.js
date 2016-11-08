@@ -4,6 +4,13 @@ import baseApi from '../api/base';
 baseApi.getAccountTransactions();
 
 export default {
+  setInternalAccount(id) {
+    return {
+      type: accountTypes.SET_SELECTED_INTERNAL_ACCOUNT,
+      id
+    };
+  },
+
   setSelectedInternalAccount(id) {
     return {
       type: accountTypes.SET_SELECTED_INTERNAL_ACCOUNT,
@@ -14,6 +21,19 @@ export default {
   getSelectedInternalAccount() {
     return {
       type: accountTypes.GET_SELECTED_INTERNAL_ACCOUNT
+    };
+  },
+
+  getExternalAccounts() {
+    return (dispatch) => {
+      dispatch({ type: accountTypes.GET_EXTERNAL_ACCOUNTS });
+
+      return baseApi.getExternalAccounts().then((response) => {
+        dispatch({
+          type: accountTypes.GET_EXTERNAL_ACCOUNTS_SUCCESS,
+          response: response
+        });
+      });
     };
   },
 

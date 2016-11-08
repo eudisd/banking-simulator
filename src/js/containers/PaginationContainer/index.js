@@ -7,7 +7,7 @@ import PaginationList from '../../components/PaginationList';
 
 class PaginationContainer extends React.Component {
   static propTypes = {
-    transactions: React.PropTypes.object,
+    transactions: React.PropTypes.object
   };
 
   render() {
