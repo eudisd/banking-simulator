@@ -70,6 +70,18 @@ export default (state={}, action) => {
       external: action.response
     };
 
+  case accountTypes.SET_TRANSACTION:
+    return {
+      ...state
+    };
+
+  case accountTypes.SET_TRANSACTION_SUCCESS:
+    return {
+      ...state,
+      internal: action.response[0],
+      external: action.response[1]
+    };
+
   default:
     return state;
   }

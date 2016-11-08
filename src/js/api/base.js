@@ -5,6 +5,82 @@ import merge from 'lodash/merge';
 import model from 'js/models/falcor';
 
 export default {
+  setTransaction(fromId, toId, amount) {
+    return new Promise((resolve, reject) => {
+      let payload = {
+        json: {
+          accounts: {
+            external: null,
+            internal: null
+          }
+        }
+      };
+
+      Promise.all([
+        this.getInternalAccounts(),
+        this.getExternalAccounts()
+      ]).then((responses) => {
+        const internal = responses[0];
+        const external = responses[1];
+        const numberAmount = Number(amount);
+
+        if (!internal || !external) {
+          return;
+        }
+
+        forEach(internal, (i) => {
+          if (i.id === fromId) {
+            i.transactions.push({
+              id: i.id + Math.floor(Math.random() * 10000),
+              balance: i.balance - numberAmount,
+              amount: -numberAmount,
+              type: 'debit',
+              date: (new Date()).toJSON()
+            });
+
+            i.balance = i.balance - numberAmount;
+            return false;
+          }
+          return true;
+        });
+
+        forEach(internal, (i) => {
+          if (i.id === toId) {
+            i.transactions.push({
+              id: i.id + Math.floor(Math.random() * 10000),
+              balance: i.balance + numberAmount,
+              amount: numberAmount,
+              type: 'deposit',
+              date: (new Date()).toJSON()
+            });
+
+            i.balance = i.balance + numberAmount;
+            return false;
+          }
+          return true;
+        });
+
+        if (external[0].id === fromId) {
+          external[0].balance -= numberAmount;
+        } else if (external[0].id === toId) {
+          external[0].balance += numberAmount;
+        }
+
+        payload.json.accounts.external = external;
+        payload.json.accounts.internal = internal;
+
+        model.set(payload).then((response) => {
+          return Promise.all([
+            this.getInternalAccounts(),
+            this.getExternalAccounts()
+          ]).then((final) => {
+            resolve(final);
+          });
+        });
+      });
+    });
+  },
+
   getInternalAccounts() {
     return new Promise((resolve, reject) => {
       return model.get('accounts.internal[0..2]["id", "name", "idName", "type", "balance", "transactions"]').then((accountsResponse) => {

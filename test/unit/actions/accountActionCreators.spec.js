@@ -29,6 +29,25 @@ describe('accountActionCreators', () => {
     });
   });
 
+  describe('getExternalAccounts', () => {
+    it('get external accounts correctly', () => {
+      const { getExternalAccounts } = accountActionCreators;
+      const initialState = {};
+      const store = mockStore(initialState);
+
+      return store.dispatch(getExternalAccounts()).then(() => {
+        const actions = store.getActions();
+        const expectedResponse = getExpectedGetExternalAccountsResponse();
+
+        expect(actions[0]).to.deep.equal({
+          type: accountTypes.GET_EXTERNAL_ACCOUNTS
+        });
+
+        expect(actions[1]).to.deep.equal(expectedResponse);
+      });
+    });
+  });
+
   describe('setSelectedInternalAccount', () => {
     it('should create an action to set the selected internal account', () => {
       const { setSelectedInternalAccount } = accountActionCreators;
@@ -51,32 +70,76 @@ describe('accountActionCreators', () => {
       expect(getSelectedInternalAccount()).to.deep.equal(expectedResult);
     });
   });
+
+  describe('setSelectedToAccount', () => {
+    it('should create an action to set the selected to account', () => {
+      const { setSelectedToAccount } = accountActionCreators;
+      const expectedResult = {
+        type: accountTypes.SET_SELECTED_TO_ACCOUNT,
+        id: '1234'
+      };
+
+      expect(setSelectedToAccount('1234')).to.deep.equal(expectedResult);
+    });
+  });
+
+  describe('getSelectedToAccount', () => {
+    it('should create an action to get the selected to account', () => {
+      const { getSelectedToAccount } = accountActionCreators;
+      const expectedResult = {
+        type: accountTypes.GET_SELECTED_TO_ACCOUNT
+      };
+
+      expect(getSelectedToAccount()).to.deep.equal(expectedResult);
+    });
+  });
+
+  describe('setSelectedFromAccount', () => {
+    it('should create an action to set the selected from account', () => {
+      const { setSelectedFromAccount } = accountActionCreators;
+      const expectedResult = {
+        type: accountTypes.SET_SELECTED_FROM_ACCOUNT,
+        id: '1234'
+      };
+
+      expect(setSelectedFromAccount('1234')).to.deep.equal(expectedResult);
+    });
+  });
+
+  describe('getSelectedFromAccount', () => {
+    it('should create an action to get the selected from account', () => {
+      const { getSelectedFromAccount } = accountActionCreators;
+      const expectedResult = {
+        type: accountTypes.GET_SELECTED_FROM_ACCOUNT
+      };
+
+      expect(getSelectedFromAccount()).to.deep.equal(expectedResult);
+    });
+  });
 });
 
-function getExpectedGetInternalAccountsResponse() {
+function getExpectedGetExternalAccountsResponse() {
+  return {
+     "type":"GET_EXTERNAL_ACCOUNTS_SUCCESS",
+     "response":[
+        {
+           "id":"5555",
+           "name":"JP Morgan Chase",
+           "idName":"(External)-Chase-5555",
+           "type":"savings",
+           "balance":200000
+        }
+     ]
+  }
+}
 
+function getExpectedGetInternalAccountsResponse() {
   return {
      "type":"GET_INTERNAL_ACCOUNTS_SUCCESS",
      "response":[
         {
            "id":"all",
            "transactions":[
-              {
-                 "id":2,
-                 "amount":-100,
-                 "date":"1983-07-21T05:15:00.000Z",
-                 "description":"Merged 1",
-                 "type":"debit",
-                 "balance":4900
-              },
-              {
-                 "id":3,
-                 "amount":200,
-                 "date":"1983-07-21T05:15:00.000Z",
-                 "description":"Merged 2",
-                 "type":"deposit",
-                 "balance":5100
-              }
            ],
            "name":"KBS",
            "idName":"All Transactions",
@@ -107,7 +170,7 @@ function getExpectedGetInternalAccountsResponse() {
                  "date":"1983-07-21T05:15:00.000Z",
                  "description":"Testing 1",
                  "type":"debit",
-                 "balance":4900
+                 "balance":5000
               },
               {
                  "id":7,
@@ -115,7 +178,7 @@ function getExpectedGetInternalAccountsResponse() {
                  "date":"1983-07-21T05:15:00.000Z",
                  "description":"Testing 1",
                  "type":"deposit",
-                 "balance":5100
+                 "balance":5200
               },
               {
                  "id":8,
@@ -123,7 +186,7 @@ function getExpectedGetInternalAccountsResponse() {
                  "date":"1983-07-21T05:15:00.000Z",
                  "description":"Testing 1",
                  "type":"debit",
-                 "balance":4900
+                 "balance":5100
               },
               {
                  "id":9,
@@ -139,15 +202,15 @@ function getExpectedGetInternalAccountsResponse() {
                  "date":"1983-07-21T05:15:00.000Z",
                  "description":"Testing 1",
                  "type":"debit",
-                 "balance":4900
+                 "balance":5200
               },
               {
                  "id":11,
-                 "amount":200,
+                 "amount":-200,
                  "date":"1983-07-21T05:15:00.000Z",
                  "description":"Testing 1",
-                 "type":"deposit",
-                 "balance":5100
+                 "type":"debit",
+                 "balance":5000
               }
            ],
            "name":"KBS",
@@ -164,15 +227,15 @@ function getExpectedGetInternalAccountsResponse() {
                  "date":"1983-07-21T05:15:00.000Z",
                  "description":"Testing 3",
                  "type":"debit",
-                 "balance":4800
+                 "balance":800
               },
               {
                  "id":13,
-                 "amount":300,
+                 "amount":200,
                  "date":"1983-07-21T05:15:00.000Z",
                  "description":"Testing 4",
                  "type":"deposit",
-                 "balance":5200
+                 "balance":1000
               }
            ],
            "name":"KBS",

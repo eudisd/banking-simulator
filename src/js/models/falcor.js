@@ -27,25 +27,7 @@ export default new falcor.Model({
           id: aggregateInternalAccountId,
           name: 'KBS',
           idName: 'All Transactions',
-          type: 'all',
-          transactions: [
-            {
-              id: id + 1,
-              date,
-              description: 'Merged 1',
-              amount: -100,
-              type: 'debit',
-              balance: 4900
-            },
-            {
-              id: id + 2,
-              date,
-              description: 'Merged 2',
-              amount: +200,
-              type: 'deposit',
-              balance: 5100
-            }
-          ]
+          type: 'all'
         },
         {
           id: secondInternalAccountId,
@@ -76,7 +58,7 @@ export default new falcor.Model({
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
-              balance: 4900
+              balance: 5000
             },
             {
               id: id + 6,
@@ -84,7 +66,7 @@ export default new falcor.Model({
               description: 'Testing 1',
               amount: +200,
               type: 'deposit',
-              balance: 5100
+              balance: 5200
             },
             {
               id: id + 7,
@@ -92,7 +74,7 @@ export default new falcor.Model({
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
-              balance: 4900
+              balance: 5100
             },
             {
               id: id + 8,
@@ -108,15 +90,15 @@ export default new falcor.Model({
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
-              balance: 4900
+              balance: 5200
             },
             {
               id: id + 10,
               date,
               description: 'Testing 1',
-              amount: +200,
-              type: 'deposit',
-              balance: 5100
+              amount: -200,
+              type: 'debit',
+              balance: 5000
             }
           ]
         },
@@ -133,15 +115,15 @@ export default new falcor.Model({
               description: 'Testing 3',
               amount: -200,
               type: 'debit',
-              balance: 4800
+              balance: 800
             },
             {
               id: id + 12,
               date,
               description: 'Testing 4',
-              amount: +300,
+              amount: +200,
               type: 'deposit',
-              balance: 5200
+              balance: 1000
             }
           ]
         }

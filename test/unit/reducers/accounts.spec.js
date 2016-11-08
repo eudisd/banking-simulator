@@ -14,6 +14,13 @@ describe('accounts reducer', () => {
     })).to.deep.equal({ internal: 'My Test State' });
   });
 
+  it('returns internal accounts on GET_EXTERNAL_ACCOUNTS_SUCCESS', () => {
+    expect(accounts({}, {
+      type: accountTypes.GET_EXTERNAL_ACCOUNTS_SUCCESS,
+      response: 'My Test State'
+    })).to.deep.equal({ external: 'My Test State' });
+  });
+
   it('sets the first internal account on SET_SELECTED_INTERNAL_ACCOUNT error', () => {
     expect(accounts({
     }, {

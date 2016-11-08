@@ -10,9 +10,8 @@ Before we get started, here are the assumptions I made:
 
 ## Simple Architecture
 
-The application is build using React, React Router, Redux and Falcor for a
+The application is build using React, React Router, Redux and Falcor for
 simple client side data management.
-
 
 # Getting Started
 
