@@ -11,6 +11,20 @@ export default {
     };
   },
 
+  setSelectedToAccount(id) {
+    return {
+      type: accountTypes.SET_SELECTED_TO_ACCOUNT,
+      id
+    };
+  },
+
+  setSelectedFromAccount(id) {
+    return {
+      type: accountTypes.SET_SELECTED_FROM_ACCOUNT,
+      id
+    };
+  },
+
   setSelectedInternalAccount(id) {
     return {
       type: accountTypes.SET_SELECTED_INTERNAL_ACCOUNT,

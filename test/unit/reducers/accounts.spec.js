@@ -46,4 +46,78 @@ describe('accounts reducer', () => {
       id: 1
     });
   });
+
+  it('sets the to transfer account on SET_SELECTED_TO_ACCOUNT', () => {
+    expect(accounts({
+      internal: [{id: 1}, {id: 'all'}]
+    }, {
+      type: accountTypes.SET_SELECTED_TO_ACCOUNT,
+      id: 1
+    })).to.deep.equal({
+      internal: [{id: 1}, {id: 'all'}],
+      selectedToAccount: {id: 1}
+    })
+  });
+
+  it('sets the to transfer account on SET_SELECTED_TO_ACCOUNT on the external account', () => {
+    expect(accounts({
+      internal: [{id: 1}, {id: 'all'}],
+      external: [{id: 2}]
+    }, {
+      type: accountTypes.SET_SELECTED_TO_ACCOUNT,
+      id: 2
+    })).to.deep.equal({
+      internal: [{id: 1}, {id: 'all'}],
+      external: [{id: 2}],
+      selectedToAccount: {id: 2}
+    })
+  });
+
+  it('sets the from transfer account on SET_SELECTED_FROM_ACCOUNT', () => {
+    expect(accounts({
+      internal: [{id: 1}, {id: 'all'}]
+    }, {
+      type: accountTypes.SET_SELECTED_FROM_ACCOUNT,
+      id: 1
+    })).to.deep.equal({
+      internal: [{id: 1}, {id: 'all'}],
+      selectedFromAccount: {id: 1}
+    })
+  });
+
+  it('sets the to transfer account on SET_SELECTED_FROM_ACCOUNT on the external account', () => {
+    expect(accounts({
+      internal: [{id: 1}, {id: 'all'}],
+      external: [{id: 2}]
+    }, {
+      type: accountTypes.SET_SELECTED_FROM_ACCOUNT,
+      id: 2
+    })).to.deep.equal({
+      internal: [{id: 1}, {id: 'all'}],
+      external: [{id: 2}],
+      selectedFromAccount: {id: 2}
+    })
+  });
+
+  it('returns the selected to account on GET_SELECTED_TO_ACCOUNT', () => {
+    expect(
+    accounts({
+      selectedToAccount: {id: 1}
+    }, {
+      type: accountTypes.GET_SELECTED_TO_ACCOUNT,
+    })).to.deep.equal({
+      id: 1
+    });
+  });
+
+  it('returns the selected to account on GET_SELECTED_FROM_ACCOUNT', () => {
+    expect(
+    accounts({
+      selectedFromAccount: {id: 1}
+    }, {
+      type: accountTypes.GET_SELECTED_FROM_ACCOUNT,
+    })).to.deep.equal({
+      id: 1
+    });
+  });
 });

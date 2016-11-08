@@ -16,8 +16,47 @@ export default (state={}, action) => {
       selectedInternalAccount
     };
 
+  case accountTypes.SET_SELECTED_TO_ACCOUNT:
+    let selectedToAccount;
+
+    try {
+      selectedToAccount = filter(state.internal, a => a.id === action.id)[0];
+      if (selectedToAccount === undefined) {
+        selectedToAccount = filter(state.external, a => a.id === action.id)[0];
+      }
+    } catch (e) {
+      selectedToAccount = state.internal[0];
+    }
+
+    return {
+      ...state,
+      selectedToAccount
+    };
+
+  case accountTypes.SET_SELECTED_FROM_ACCOUNT:
+    let selectedFromAccount;
+    try {
+      selectedFromAccount = filter(state.internal, a => a.id === action.id)[0];
+      if (selectedFromAccount === undefined) {
+        selectedFromAccount = filter(state.external, a => a.id === action.id)[0];
+      }
+    } catch (e) {
+      selectedFromAccount = state.internal[0];
+    }
+
+    return {
+      ...state,
+      selectedFromAccount
+    };
+
   case accountTypes.GET_SELECTED_INTERNAL_ACCOUNT:
     return state.selectedInternalAccount;
+
+  case accountTypes.GET_SELECTED_TO_ACCOUNT:
+    return state.selectedToAccount;
+
+  case accountTypes.GET_SELECTED_FROM_ACCOUNT:
+    return state.selectedFromAccount;
 
   case accountTypes.GET_INTERNAL_ACCOUNTS_SUCCESS:
     return {

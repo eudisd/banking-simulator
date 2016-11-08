@@ -65,9 +65,6 @@ class AccountTransactionList extends React.Component {
               );
             })}
           </tbody>
-          <tfoot>
-
-          </tfoot>
         </table>
       </div>
     );
