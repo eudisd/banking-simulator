@@ -1,10 +1,13 @@
 import falcor from 'falcor';
+import range from 'lodash/range';
 import truncate from 'lodash/truncate';
 import faker from 'faker';
 
 const aggregateInternalAccountId = 'all';
 const secondInternalAccountId = '789012';
 const thirdInternalAccountId = '111213';
+const id = 1;
+const date = (new Date('July 21, 1983 01:15:00')).toJSON();
 
 export default new falcor.Model({
   cache: {
@@ -25,16 +28,16 @@ export default new falcor.Model({
           type: 'all',
           transactions: [
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 1,
+              date,
               description: 'Merged 1',
               amount: -100,
               type: 'debit',
               balance: 4900
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 2,
+              date,
               description: 'Merged 2',
               amount: +200,
               type: 'deposit',
@@ -50,64 +53,64 @@ export default new falcor.Model({
           balance: 5000,
           transactions: [
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 3,
+              date,
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
               balance: 4900
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 4,
+              date,
               description: 'Testing 1',
               amount: +200,
               type: 'deposit',
               balance: 5100
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 5,
+              date,
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
               balance: 4900
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 6,
+              date,
               description: 'Testing 1',
               amount: +200,
               type: 'deposit',
               balance: 5100
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 7,
+              date,
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
               balance: 4900
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 8,
+              date,
               description: 'Testing 1',
               amount: +200,
               type: 'deposit',
               balance: 5100
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 9,
+              date,
               description: 'Testing 1',
               amount: -100,
               type: 'debit',
               balance: 4900
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 10,
+              date,
               description: 'Testing 1',
               amount: +200,
               type: 'deposit',
@@ -123,16 +126,16 @@ export default new falcor.Model({
           balance: 1000,
           transactions: [
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 11,
+              date,
               description: 'Testing 3',
               amount: -200,
               type: 'debit',
               balance: 4800
             },
             {
-              id: faker.random.uuid(),
-              date: (new Date()).toJSON(),
+              id: id + 12,
+              date,
               description: 'Testing 4',
               amount: +300,
               type: 'deposit',

@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 
-class AccountBalanceList extends React.Component {
+class PaginationList extends React.Component {
   static propTypes = {
     transactions: React.PropTypes.array
   };
@@ -37,4 +37,4 @@ class AccountBalanceList extends React.Component {
   }
 }
 
-export default AccountBalanceList;
+export default PaginationList;
