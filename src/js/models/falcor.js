@@ -24,12 +24,6 @@ export default new falcor.Model({
       ],
       internal: [
         {
-          id: aggregateInternalAccountId,
-          name: 'KBS',
-          idName: 'All Transactions',
-          type: 'all'
-        },
-        {
           id: secondInternalAccountId,
           name: 'KBS',
           idName: `KBS-savings-...${secondInternalAccountId.split('').slice(-4).join('')}`,

@@ -54,6 +54,8 @@ class TransferModalContainer extends React.Component {
        this.clearFromAccount();
        this.clearToAccount();
        this.clearAmount();
+       $(this.refs.dropdownFrom).dropdown('restore defaults');
+       $(this.refs.dropdownTo).dropdown('restore defaults');
       },
       onShow: () => {
         $(this.refs.form).form({
@@ -205,7 +207,7 @@ class TransferModalContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const internal = state && state.accounts && filter(state.accounts.internal, a => a.id !== 'all');
+  const internal = state && state.accounts && state.accounts.internal;
   const external = state && state.accounts && state.accounts.external;
   const selectedFromAccount = state && state.accounts && state.accounts.selectedFromAccount;
   const selectedToAccount = state && state.accounts && state.accounts.selectedToAccount;

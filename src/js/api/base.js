@@ -137,7 +137,7 @@ export default {
   getInternalAccountsField(field) {
     return new Promise((resolve, reject) => {
       return model
-      .get(`accounts.internal[0..1]["${field}"]`)
+      .get(`accounts.internal[0..2]["${field}"]`)
       .then((response) => {
         if (response) {
           resolve(map(response.json.accounts.internal, (o) => o));

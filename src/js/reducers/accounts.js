@@ -35,6 +35,7 @@ export default (state={}, action) => {
 
   case accountTypes.SET_SELECTED_FROM_ACCOUNT:
     let selectedFromAccount;
+
     try {
       selectedFromAccount = filter(state.internal, a => a.id === action.id)[0];
       if (selectedFromAccount === undefined) {
@@ -47,6 +48,20 @@ export default (state={}, action) => {
     return {
       ...state,
       selectedFromAccount
+    };
+
+  case accountTypes.UPDATE_SELECTED_INTERNAL_ACCOUNT:
+    let updatedSelectedInternalAccount;
+
+    if (state && state.selectedInternalAccount) {
+      updatedSelectedInternalAccount = filter(state.internal, a => a.id === state.selectedInternalAccount.id)[0];
+    }
+
+    console.log('state');
+
+    return {
+      ...state,
+      selectedInternalAccount: updatedSelectedInternalAccount
     };
 
   case accountTypes.GET_SELECTED_INTERNAL_ACCOUNT:

@@ -14,6 +14,10 @@ export default {
           type: accountTypes.SET_TRANSACTION_SUCCESS,
           response: response
         });
+
+        dispatch({
+          type: accountTypes.UPDATE_SELECTED_INTERNAL_ACCOUNT
+        });
       });
     };
   },

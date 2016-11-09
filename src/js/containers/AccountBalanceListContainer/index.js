@@ -22,8 +22,8 @@ class AccountBalanceListContainer extends React.Component {
 function mapStateToProps(state) {
   const internal = state.accounts && state.accounts.internal && state.accounts.internal;
 
-  let savingsAccount = internal && internal[1];
-  let checkingAccount = internal && internal[2];
+  let savingsAccount = internal && internal[0];
+  let checkingAccount = internal && internal[1];
 
   savingsAccount = isEmpty(savingsAccount) ? undefined: savingsAccount;
   checkingAccount = isEmpty(checkingAccount) ? undefined: checkingAccount;

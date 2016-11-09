@@ -20,6 +20,7 @@ class AccountTransactionListContainer extends React.Component {
 function mapStateToProps(state) {
   const { selectedInternalAccount } = state.accounts;
   const transactions = selectedInternalAccount && selectedInternalAccount.transactions;
+
   return {
     transactions
   };
