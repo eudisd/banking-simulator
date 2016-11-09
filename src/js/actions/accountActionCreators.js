@@ -2,14 +2,13 @@ import accountTypes from './accountTypes';
 import baseApi from '../api/base';
 
 export default {
-  setTransaction(fromId, toId, amount) {
+  setTransaction(fromId, toId, amount, desc) {
     return (dispatch) => {
       dispatch({
-        type: accountTypes.SET_TRANSACTION,
-        amount
+        type: accountTypes.SET_TRANSACTION
       });
 
-      return baseApi.setTransaction(fromId, toId, amount).then((response) => {
+      return baseApi.setTransaction(fromId, toId, amount, desc).then((response) => {
         dispatch({
           type: accountTypes.SET_TRANSACTION_SUCCESS,
           response: response

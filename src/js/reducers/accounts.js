@@ -85,11 +85,6 @@ export default (state={}, action) => {
       external: action.response
     };
 
-  case accountTypes.SET_TRANSACTION:
-    return {
-      ...state
-    };
-
   case accountTypes.SET_TRANSACTION_SUCCESS:
     return {
       ...state,

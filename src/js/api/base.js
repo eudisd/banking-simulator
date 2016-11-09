@@ -5,7 +5,7 @@ import merge from 'lodash/merge';
 import model from 'js/models/falcor';
 
 export default {
-  setTransaction(fromId, toId, amount) {
+  setTransaction(fromId, toId, amount, desc) {
     return new Promise((resolve, reject) => {
       let payload = {
         json: {
@@ -35,7 +35,8 @@ export default {
               balance: i.balance - numberAmount,
               amount: -numberAmount,
               type: 'debit',
-              date: (new Date()).toJSON()
+              date: (new Date()).toJSON(),
+              description: desc
             });
 
             i.balance = i.balance - numberAmount;
@@ -51,7 +52,8 @@ export default {
               balance: i.balance + numberAmount,
               amount: numberAmount,
               type: 'deposit',
-              date: (new Date()).toJSON()
+              date: (new Date()).toJSON(),
+              description: desc
             });
 
             i.balance = i.balance + numberAmount;

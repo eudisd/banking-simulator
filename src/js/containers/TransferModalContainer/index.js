@@ -66,7 +66,27 @@ class TransferModalContainer extends React.Component {
               rules: [
                 {
                   type: 'regExp[/^[0-9]+$/]',
-                  prompt: 'Please enter positive dollar amount'
+                  prompt: 'Please Enter Positive Dollar Amount'
+                }
+              ]
+            },
+
+            dropdownTo: {
+              identifier: 'dropdownTo',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please Select To Account'
+                }
+              ]
+            },
+
+            dropdownFrom: {
+              identifier: 'dropdownFrom',
+              rules: [
+                {
+                  type: 'empty',
+                  prompt: 'Please Select From Account'
                 }
               ]
             }
@@ -80,7 +100,8 @@ class TransferModalContainer extends React.Component {
           this.props.onSetTransaction(
             this.props.selectedFromAccount.id,
             this.props.selectedToAccount.id,
-            this.refs.amount.value
+            this.refs.amount.value,
+            this.refs.desc.value || ''
           );
         }
 
@@ -129,8 +150,7 @@ class TransferModalContainer extends React.Component {
     const { accounts } = this.props;
 
     return (
-      <select className="ui dropdown" ref="dropdownFrom">
-        <option value="">From Account</option>
+      <select className="ui dropdown" ref="dropdownFrom" name="dropdownFrom">
         {accounts.map((account) => {
           return (
             <option value={account.id} key={account.id}>
@@ -146,8 +166,7 @@ class TransferModalContainer extends React.Component {
     const { accounts } = this.props;
 
     return (
-      <select className="ui dropdown" ref="dropdownTo">
-        <option value="">To Account</option>
+      <select className="ui dropdown" ref="dropdownTo" name="dropdownTo">
         {accounts.map((account) => {
           return (
             <option value={account.id} key={account.id}>
@@ -172,7 +191,6 @@ class TransferModalContainer extends React.Component {
           </div>
           <div className="description ui grid form" ref="form">
             <div className="transferModal__description sixteen wide column">
-
               {this.renderFromModal()}
 
               &nbsp;
@@ -182,14 +200,23 @@ class TransferModalContainer extends React.Component {
               {this.renderToModal()}
 
               &nbsp;
-              &nbsp;
+
               <span className="ui input focus field">
                 <input name="amount" type="text" placeholder="Amount..." ref="amount" />
               </span>
+
+              &nbsp;
+
+              <span className="ui input focus field">
+                <input name="desc" type="text" placeholder="Memo..." ref="desc" />
+              </span>
             </div>
-            <br />
-            <br />
-            <br />
+
+            <div className="sixteen wide column">
+              <div className="ui grid four wide column centered">
+                <div className="transferModal__error ui error message"></div>
+              </div>
+            </div>
           </div>
           <div className="actions">
             <div className="ui black deny button">
@@ -239,11 +266,12 @@ function mapDispatchToProps(dispatch, ownProps) {
   return {
     onSelectFromAccount: (id) => dispatch(setSelectedFromAccount(id)),
     onSelectToAccount: (id) => dispatch(setSelectedToAccount(id)),
-    onSetTransaction: (fromId, toId, amount) => {
+    onSetTransaction: (fromId, toId, amount, desc) => {
       dispatch(setTransaction(
         fromId,
         toId,
-        amount
+        amount,
+        desc
       ));
     }
   };
