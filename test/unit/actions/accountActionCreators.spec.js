@@ -138,14 +138,6 @@ function getExpectedGetInternalAccountsResponse() {
      "type":"GET_INTERNAL_ACCOUNTS_SUCCESS",
      "response":[
         {
-           "id":"all",
-           "transactions":[
-           ],
-           "name":"KBS",
-           "idName":"All Transactions",
-           "type":"all"
-        },
-        {
            "id":"789012",
            "transactions":[
               {

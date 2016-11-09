@@ -63,7 +63,7 @@ describe('accounts reducer', () => {
     })).to.deep.equal({
       internal: [{id: 1}, {id: 'all'}],
       selectedToAccount: {id: 1}
-    })
+    });
   });
 
   it('sets the to transfer account on SET_SELECTED_TO_ACCOUNT on the external account', () => {
@@ -125,6 +125,18 @@ describe('accounts reducer', () => {
       type: accountTypes.GET_SELECTED_FROM_ACCOUNT,
     })).to.deep.equal({
       id: 1
+    });
+  });
+
+  it('returns the transaction responses correctly on SET_TRANSACTION_SUCCESS', () => {
+    expect(
+    accounts({
+    }, {
+      type: accountTypes.SET_TRANSACTION_SUCCESS,
+      response: [0, 1]
+    })).to.deep.equal({
+      internal: 0,
+      external: 1
     });
   });
 });

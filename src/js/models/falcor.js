@@ -4,7 +4,6 @@ import truncate from 'lodash/truncate';
 import faker from 'faker';
 
 const externalAccountId = '5555';
-const aggregateInternalAccountId = 'all';
 const secondInternalAccountId = '789012';
 const thirdInternalAccountId = '111213';
 const id = 1;

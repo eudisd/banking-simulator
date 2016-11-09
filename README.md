@@ -40,7 +40,7 @@ dev server and this can be used to run the e2e tests.
 
 ## Testing
 
-Testing is implemented in three ways: unit tests, integration tests, and e2e tests.  Rather than
+Testing is implemented in two ways: unit tests and and e2e tests.  Rather than
 testing everything, I instead tested the critical code path (reducers, stores, helpers, and full e2e).
 
 ### Run All Tests
@@ -56,12 +56,6 @@ $ npm run test:unit
 
 ### Run Only Unit Tests (Watch Files)
 $ npm run test:unit:watch
-
-### Run Only Integration Tests
-$ npm run test:integration
-
-### Run Only Integration Tests (Watch Files)
-$ npm run test:integration:watch
 
 ### Run Only E2E Tests
 ```bash
