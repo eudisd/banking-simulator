@@ -30,7 +30,7 @@ export default {
 
         forEach(internal, (i) => {
           if (i.id === fromId) {
-            i.transactions.push({
+            i.transactions.unshift({
               id: i.id + Math.floor(Math.random() * 10000),
               balance: i.balance - numberAmount,
               amount: -numberAmount,
@@ -47,7 +47,7 @@ export default {
 
         forEach(internal, (i) => {
           if (i.id === toId) {
-            i.transactions.push({
+            i.transactions.unshift({
               id: i.id + Math.floor(Math.random() * 10000),
               balance: i.balance + numberAmount,
               amount: numberAmount,

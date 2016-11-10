@@ -38,11 +38,11 @@ class AccountDropdownList extends React.Component {
 
   render() {
     return (
-      <select className="ui dropdown" ref="dropdown">
+      <select id="selectedInternalAccount" className="selectedInternalAccount ui dropdown" ref="dropdown">
         <option value="">Select Account</option>
         {this.props.accounts.map((account) => {
           return (
-            <option value={account.id} key={account.id}>
+            <option className={`c-${account.id}`} value={account.id} key={account.id}>
               {account.idName}
             </option>
           );

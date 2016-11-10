@@ -40,6 +40,9 @@ class TransferModal extends React.Component {
     this.clearMemo = this.clearMemo.bind(this);
     this.validateModal = this.validateModal.bind(this);
     this.toggleAppeldErrorDiv = this.toggleAppendErrorDiv.bind(this);
+    this.onModalHidden = this.onModalHidden.bind(this);
+    this.onModalShow = this.onModalShow.bind(this);
+    this.onModalApprove = this.onModalApprove.bind(this);
   }
 
   componentWillMount() {
@@ -52,77 +55,9 @@ class TransferModal extends React.Component {
 
   configureModal() {
     $(this.refs.modal).modal({
-      closable: false,
-      onHidden: () => {
-        this.clearFromAccount();
-        this.clearToAccount();
-        this.clearAmount();
-        this.clearMemo();
-        this.props.onSelectFromAccount();
-        this.props.onSelectToAccount();
-        $(this.refs.form).form({ fields: {} });
-        $(this.refs.form).form('validate form');
-        $(this.refs.form).find('.error').removeClass('error');
-        this.toggleAppendErrorDiv();
-      },
-      onShow: () => {
-        $(this.refs.form).form({
-          on: 'blur',
-          fields: {
-            amount: {
-              identifier: 'amount',
-              rules: [
-                {
-                  type: 'regExp[/^[0-9]+$/]',
-                  prompt: 'Please Enter Positive Dollar Amount'
-                }
-              ]
-            },
-
-            dropdownTo: {
-              identifier: 'dropdownTo',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'Please Select To Account'
-                }
-              ]
-            },
-
-            dropdownFrom: {
-              identifier: 'dropdownFrom',
-              rules: [
-                {
-                  type: 'empty',
-                  prompt: 'Please Select From Account'
-                }
-              ]
-            }
-          }
-        });
-        this.toggleAppendErrorDiv();
-
-        setTimeout(() => {
-          $(this.refs.dropdownFrom).dropdown('refresh');
-          $(this.refs.dropdownTo).dropdown('refresh');
-          $(this.refs.dropdownFrom).dropdown('set selected', this.props.accounts[0].id);
-          $(this.refs.dropdownTo).dropdown('set selected', this.props.accounts[1].id);
-        });
-      },
-      onApprove: (e) => {
-        const isValid = this.validateModal();
-
-        if (isValid) {
-          this.props.onSetTransaction(
-            this.props.selectedFromAccount.id,
-            this.props.selectedToAccount.id,
-            this.refs.amount.value,
-            this.refs.desc.value || ''
-          );
-        }
-
-        return isValid;
-      }
+      onHidden: this.onModalHidden,
+      onShow: this.onModalShow,
+      onApprove: this.onModalApprove
     });
 
     $(this.refs.modal).modal('show');
@@ -136,6 +71,82 @@ class TransferModal extends React.Component {
       onChange: this.selectToAccount,
       allowReselection: true
     });
+  }
+
+  onModalHidden() {
+    this.clearFromAccount();
+    this.clearToAccount();
+    this.clearAmount();
+    this.clearMemo();
+    this.props.onSelectFromAccount();
+    this.props.onSelectToAccount();
+    $(this.refs.form).form({ fields: {} });
+    $(this.refs.form).form('validate form');
+    $(this.refs.form).find('.error').removeClass('error');
+    this.toggleAppendErrorDiv();
+  }
+
+  onModalShow() {
+    $(this.refs.form).form({
+      on: 'blur',
+      fields: {
+        amount: {
+          identifier: 'amount',
+          rules: [
+            {
+              type: 'regExp[/^[0-9]+$/]',
+              prompt: 'Please Enter Positive Dollar Amount'
+            }
+          ]
+        },
+
+        dropdownTo: {
+          identifier: 'dropdownTo',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please Select To Account'
+            }
+          ]
+        },
+
+        dropdownFrom: {
+          identifier: 'dropdownFrom',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please Select From Account'
+            }
+          ]
+        }
+      }
+    });
+
+    this.toggleAppendErrorDiv();
+
+    setTimeout(() => {
+      $(this.refs.dropdownFrom).dropdown('refresh');
+      $(this.refs.dropdownTo).dropdown('refresh');
+      $(this.refs.dropdownFrom).dropdown('set selected', this.props.accounts[0].id);
+      $(this.refs.dropdownTo).dropdown('set selected', this.props.accounts[1].id);
+      this.props.onSelectFromAccount(this.props.accounts[0].id);
+      this.props.onSelectToAccount(this.props.accounts[1].id);
+    });
+  }
+
+  onModalApprove() {
+    const isValid = this.validateModal();
+
+    if (isValid) {
+      this.props.onSetTransaction(
+        this.props.selectedFromAccount.id,
+        this.props.selectedToAccount.id,
+        this.refs.amount.value,
+        this.refs.desc.value || ''
+      );
+    }
+
+    return isValid;
   }
 
   clearFromAccount() {
@@ -176,7 +187,7 @@ class TransferModal extends React.Component {
     const { accounts } = this.props;
 
     return (
-      <select className="ui dropdown" ref="dropdownFrom" name="dropdownFrom">
+      <select className="dropdownFrom ui dropdown" ref="dropdownFrom" name="dropdownFrom">
         {accounts.map((account) => {
           return (
             <option value={account.id} key={account.id}>
@@ -192,7 +203,7 @@ class TransferModal extends React.Component {
     const { accounts } = this.props;
 
     return (
-      <select className="ui dropdown" ref="dropdownTo" name="dropdownTo">
+      <select className="dropdownTo ui dropdown" ref="dropdownTo" name="dropdownTo">
         {accounts.map((account) => {
           return (
             <option value={account.id} key={account.id}>
@@ -228,13 +239,13 @@ class TransferModal extends React.Component {
               &nbsp;
 
               <span className="ui input focus field">
-                <input name="amount" type="text" placeholder="Amount..." ref="amount" />
+                <input className="amount" name="amount" type="text" placeholder="Amount..." ref="amount" />
               </span>
 
               &nbsp;
 
               <span className="ui input focus field">
-                <input name="desc" type="text" placeholder="Memo..." ref="desc" />
+                <input className="desc" name="desc" type="text" placeholder="Memo..." ref="desc" />
               </span>
             </div>
 

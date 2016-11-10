@@ -35,8 +35,7 @@ $ npm start
 ```
 
 We also build a production bundle with chunking.  This build has js minificatinon, and 
-cheap source maps enabled.  It is used for running the e2e tests, although both the webpack
-dev server and this can be used to run the e2e tests.
+cheap source maps enabled.  It is used for running the e2e tests.
 
 ## Testing
 

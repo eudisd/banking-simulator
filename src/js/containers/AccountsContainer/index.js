@@ -6,7 +6,6 @@ import AccountBalanceListContainer from '../AccountBalanceListContainer';
 import AccountTransactionListContainer from '../AccountTransactionListContainer';
 import AccountDropdownListContainer from '../AccountDropdownListContainer';
 import TransferModalContainer from '../TransferModalContainer';
-import PaginationContainer from '../PaginationContainer';
 
 class AccountsContainer extends React.Component {
   static propTypes = {
@@ -33,9 +32,6 @@ class AccountsContainer extends React.Component {
             <TransferModalContainer />
           </div>
           <AccountTransactionListContainer />
-          <div className="ui bottom attached centered header">
-            <PaginationContainer />
-          </div>
         </div>
         <AccountBalanceListContainer />
       </div>

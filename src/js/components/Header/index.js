@@ -19,7 +19,7 @@ export default class Header extends React.Component {
     return (
       <div className="header">
         <div className="header__copy">
-          <Link to="/"><h1> Kustomer Banking Systems </h1></Link>
+          <Link to="/"><h1 className="kbsLogo"> Kustomer Banking Systems </h1></Link>
         </div>
       </div>
     );

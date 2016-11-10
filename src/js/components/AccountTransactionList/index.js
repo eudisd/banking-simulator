@@ -33,12 +33,14 @@ class AccountTransactionList extends React.Component {
     style.unuse();
   }
 
-  render() {
+  renderTransactions() {
+    let html;
+
     const { transactions } = this.props;
 
-    return (
-      <div className="transactions ui attached segment">
-        <table className="ui blue table">
+    if (transactions.length > 0) {
+      html = (
+        <table className="transactions__table ui blue table">
           <thead>
             <tr>
               <th>Date</th>
@@ -50,14 +52,14 @@ class AccountTransactionList extends React.Component {
           </thead>
           <tbody>
             {transactions.map((transaction) => {
-              const classNames = classnames({
+              const classNames = classnames('rowAmount', {
                 'transactions__debit--red': transaction.type === 'debit',
                 'transactions__deposit--green': transaction.type === 'deposit'
               });
               return (
                 <tr className="transactions__row--small" key={transaction.id}>
                   <td>{(new Date(transaction.date)).toUTCString()}</td>
-                  <td>{transaction.description}</td>
+                  <td className="rowDesc">{transaction.description}</td>
                   <td className={classNames}>{numberFormatter.format(transaction.amount)}</td>
                   <td>{transaction.type}</td>
                   <td>{numberFormatter.format(transaction.balance)}</td>
@@ -66,6 +68,20 @@ class AccountTransactionList extends React.Component {
             })}
           </tbody>
         </table>
+      );
+    } else {
+      html = <h3 className="ui transactions__default"> - No Transactions To Show -</h3>;
+    }
+
+    return html;
+  }
+
+  render() {
+    const { transactions } = this.props;
+
+    return (
+      <div className="transactions ui attached segment">
+        {this.renderTransactions()}
       </div>
     );
   }
