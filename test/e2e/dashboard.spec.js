@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
 
-const TIMEOUT_MAX = 3000;
+const TIMEOUT_MAX = 20000;
 const dashboardUrl = '/dashboard';
 
 describe('Dashboard E2E Tests', function() {
